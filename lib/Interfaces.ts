@@ -41,12 +41,12 @@ export interface ResourceActionBase extends ResourceParamsCommon {
   filter?: ResourceResponseFilter;
 }
 
-export interface ResourceMethod<I, O> {
-  (data?: I, callback?: (res: O) => any): ResourceResult<O>;
+export interface ResourceMethod {
+  (data?, callback?): ResourceResult;
 }
 
-export type ResourceResult<R extends {}> = R & {
+export type ResourceResult = {} & {
   $resolved?: boolean;
-  $observable?: Observable<R>;
+  $observable?: Observable;
   $abortRequest?: () => void;
 }

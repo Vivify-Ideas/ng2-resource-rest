@@ -3,33 +3,33 @@ import {Resource} from './Resource';
 import {ResourceMethod} from './Interfaces';
 import {ResourceAction} from './ResourceAction';
 
-export class ResourceCRUDBase<TQuery, TKeys, TShort, TFull> extends Resource {
+export class ResourceCRUDBase extends Resource {
 
   @ResourceAction({
     isArray: true
   })
-  query: ResourceMethod<TQuery, TShort>;
+  query: ResourceMethod;
 
   @ResourceAction()
-  get: ResourceMethod<TKeys, TFull>;
+  get: ResourceMethod;
 
   @ResourceAction({
     method: RequestMethod.Post
   })
-  save: ResourceMethod<TFull, TFull>;
+  save: ResourceMethod;
 
   @ResourceAction({
     method: RequestMethod.Put
   })
-  update: ResourceMethod<TFull, TFull>;
+  update: ResourceMethod;
 
   @ResourceAction({
     method: RequestMethod.Delete
   })
-  remove: ResourceMethod<TKeys, any>;
+  remove: ResourceMethod;
 
   // Alias to save
-  create(data: TFull, callback?: (res: TFull) => any): TFull {
+  create(data, callback?: res => any) {
     return this.save(data, callback);
   }
 
